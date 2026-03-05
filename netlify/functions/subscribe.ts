@@ -37,7 +37,11 @@ const handler: Handler = async (event) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid email address' }) }
   }
 
-  const webhookUrl = 'https://kybernode.workflow.serverdoor.com/webhook/leads/'
+  const webhookUrl = process.env.WEBHOOK_URL
+  if (!webhookUrl) {
+    console.error('WEBHOOK_URL env var is not set')
+    return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server misconfiguration' }) }
+  }
 
   try {
     const payload = {
