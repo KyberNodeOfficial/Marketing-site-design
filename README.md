@@ -10,23 +10,6 @@ Browser → Netlify CDN (static React app)
        → /api/subscribe → Netlify Function → n8n Webhook → Excel Sheet
 ```
 
-## Features
-
-- **Pixel-perfect design** from Stitch (NovaPulse Marketing V2)
-- **Page load entrance** — staged animations: background fade, navbar slide, hero stagger
-- **Custom cursor** (desktop) — dot + follower with hover states, magnetic CTAs, click squish
-- **Smooth scroll** — JS lerp (0.08) on desktop, native on touch
-- **Smart navbar** — glass effect, hides on scroll down, reappears on scroll up
-- **Scroll reveals** — section fade-in with stagger and IntersectionObserver
-- **Stats count-up** — 0 → value with easeOutExpo when in viewport
-- **Hero orbs** — gradient blobs with mouse parallax and slow drift
-- **Case studies** — full-width horizontal cards with texture overlays and gradient badges
-- **3-row testimonial marquee** — real profile photos, alternating scroll directions
-- **Contact form** — validates and submits to API, loading spinner, success state with checkmark animation
-- **Newsletter subscribe** — footer email form submits to API
-- **FAQ** — 2-column accordion with gradient icons
-- **Footer** — 4-column layout with newsletter signup and social links
-- **Accessibility** — respects `prefers-reduced-motion`, touch device detection
 
 ## Stack
 
