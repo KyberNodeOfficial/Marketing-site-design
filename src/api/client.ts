@@ -7,6 +7,8 @@
 export type ContactPayload = {
   name: string
   email: string
+  company: string
+  industry: string
   spend: string
   message: string
 }

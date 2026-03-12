@@ -3,6 +3,8 @@ import type { Handler } from '@netlify/functions'
 interface ContactBody {
   name: string
   email: string
+  company: string
+  industry: string
   spend: string
   message: string
 }
@@ -32,8 +34,8 @@ const handler: Handler = async (event) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid JSON' }) }
   }
 
-  const { name, email, spend, message } = data
-  if (!name?.trim() || !email?.trim() || !spend?.trim() || !message?.trim()) {
+  const { name, email, company, industry, spend, message } = data
+  if (!name?.trim() || !email?.trim() || !company?.trim() || !industry?.trim() || !spend?.trim() || !message?.trim()) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'All fields are required' }) }
   }
   if (!EMAIL_REGEX.test(email)) {
@@ -51,6 +53,8 @@ const handler: Handler = async (event) => {
       type: 'contact',
       name: name.trim(),
       email: email.trim(),
+      company: company.trim(),
+      industry: industry.trim(),
       spend: spend.trim(),
       message: message.trim(),
       submitted_at: new Date().toISOString(),

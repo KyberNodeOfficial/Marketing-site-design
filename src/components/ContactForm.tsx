@@ -29,16 +29,18 @@ export function ContactForm({ inView, reducedMotion }: ContactFormProps) {
     const form = e.currentTarget
     const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim()
     const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim()
+    const company = (form.elements.namedItem('company') as HTMLInputElement).value.trim()
+    const industry = (form.elements.namedItem('industry') as HTMLSelectElement).value
     const spend = (form.elements.namedItem('spend') as HTMLSelectElement).value
     const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim()
-    if (!name || !email || !message) {
+    if (!name || !email || !company || !industry || !message) {
       setLoading(false)
       setRipple(null)
       setError('Please fill in all required fields.')
       return
     }
     try {
-      await submitContact({ name, email, spend, message })
+      await submitContact({ name, email, company, industry, spend, message })
       setSuccess(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
@@ -117,6 +119,34 @@ export function ContactForm({ inView, reducedMotion }: ContactFormProps) {
                       disabled={loading}
                     />
                   </div>
+                </div>
+                <div className="contact-field">
+                  <label className="contact-label">Company Name</label>
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Acme Inc."
+                    required
+                    className="contact-input"
+                    disabled={loading}
+                  />
+                </div>
+                <div className="contact-field">
+                  <label className="contact-label">Industry</label>
+                  <select name="industry" className="contact-select" required disabled={loading}>
+                    <option value="">Select your industry</option>
+                    <option value="Technology">Technology</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Finance / Fintech">Finance / Fintech</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="SaaS">SaaS</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Media & Entertainment">Media & Entertainment</option>
+                    <option value="Education">Education</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
                 <div className="contact-field">
                   <label className="contact-label">Current Monthly Spend</label>
